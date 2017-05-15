@@ -23,7 +23,7 @@ namespace Sefin.ServiceTool
         /// <summary>
         /// 
         /// </summary>
-        private int _joinTimeMs = 2000;
+        private int _joinTimeMs = 20000;
 
         /// <summary>
         /// ctor: init component and local data
@@ -41,7 +41,7 @@ namespace Sefin.ServiceTool
         {
             _continue = true;
             _thread = new Thread(Process);
-            _thread.IsBackground = true;
+            //_thread.IsBackground = true;
             _thread.Start();
         }
 
@@ -50,7 +50,11 @@ namespace Sefin.ServiceTool
         /// </summary>
         protected override void OnStop()
         {
+            //throw new Exception("non mi fermo!!!");
+
             _continue = false;
+            //_thread.Join();  // wait forever
+            
             _thread.Join(_joinTimeMs);
             if (_thread.ThreadState != ThreadState.Stopped) { 
                 _thread.Abort();
@@ -63,11 +67,13 @@ namespace Sefin.ServiceTool
             Log("  - Starting process -");
             while (true)
             {
-                Log("  Performing...-");
+                Log("  Performing...");
                 //....
                 Thread.Sleep(2000);
-                if (!_continue) return;
+                if (!_continue) break;
             }
+
+            //Thread.Sleep(20000);
             Log("  - Process completed -");
         }
 

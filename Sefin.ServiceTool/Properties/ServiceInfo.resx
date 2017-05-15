@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ServiceCode" xml:space="preserve">
-    <value>SFN-SRVTOOL</value>
+    <value>SFN-SRVTOOLB</value>
   </data>
   <data name="ServiceDescription" xml:space="preserve">
-    <value>Sefin Service Tool</value>
+    <value>Sefin Service Tool - B</value>
   </data>
   <data name="ServiceDisplayName" xml:space="preserve">
-    <value>Sefin Service Tool</value>
+    <value>Sefin Service Tool - B</value>
   </data>
 </root>

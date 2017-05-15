@@ -61,7 +61,7 @@ namespace Sefin.ServiceTool.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SFN-SRVTOOL.
+        ///   Looks up a localized string similar to SFN-SRVTOOLB.
         /// </summary>
         internal static string ServiceCode {
             get {
@@ -70,7 +70,7 @@ namespace Sefin.ServiceTool.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sefin Service Tool.
+        ///   Looks up a localized string similar to Sefin Service Tool - B.
         /// </summary>
         internal static string ServiceDescription {
             get {
@@ -79,7 +79,7 @@ namespace Sefin.ServiceTool.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sefin Service Tool.
+        ///   Looks up a localized string similar to Sefin Service Tool - B.
         /// </summary>
         internal static string ServiceDisplayName {
             get {

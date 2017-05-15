@@ -17,7 +17,13 @@ namespace Sefin.ServiceTool
         {
             get
             {
-                return _instance ?? (_instance = new ServiceLogger());
+                //return _instance ?? (_instance = new ServiceLogger());
+                if (_instance == null)
+                {
+                    _instance = new ServiceLogger();
+                }
+
+                return _instance;
             }
         }
 
