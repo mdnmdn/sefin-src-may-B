@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sefin.Importer.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sefin.ServiceTool
 {
-    class ServiceLogger 
+    class ServiceLogger : ILogger
     {
 
         #region Singleton

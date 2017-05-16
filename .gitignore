@@ -230,6 +230,8 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
+data/
+
 
 .sonarqube
 

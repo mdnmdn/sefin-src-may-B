@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sefin.ServiceTool", "Sefin.ServiceTool\Sefin.ServiceTool.csproj", "{7E529ECD-B343-4916-94E7-72F933F71EC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sefin.AnacenImporter", "Sefin.AnacenImporter\Sefin.AnacenImporter.csproj", "{3AF580CA-1FE7-4888-9797-FEA0BF1A2D47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sefin.Importer.Common", "Sefin.Importer.Common\Sefin.Importer.Common.csproj", "{D96DEA64-ACDB-41AE-8116-BB0622883D9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7E529ECD-B343-4916-94E7-72F933F71EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E529ECD-B343-4916-94E7-72F933F71EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E529ECD-B343-4916-94E7-72F933F71EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AF580CA-1FE7-4888-9797-FEA0BF1A2D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AF580CA-1FE7-4888-9797-FEA0BF1A2D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AF580CA-1FE7-4888-9797-FEA0BF1A2D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AF580CA-1FE7-4888-9797-FEA0BF1A2D47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D96DEA64-ACDB-41AE-8116-BB0622883D9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96DEA64-ACDB-41AE-8116-BB0622883D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96DEA64-ACDB-41AE-8116-BB0622883D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96DEA64-ACDB-41AE-8116-BB0622883D9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

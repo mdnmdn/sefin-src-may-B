@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
 using System.Collections.Generic;
+using Sefin.AnacenImporter;
 
 namespace Sefin.ServiceTool
 {
@@ -23,7 +24,7 @@ namespace Sefin.ServiceTool
         /// <summary>
         /// 
         /// </summary>
-        private int _joinTimeMs = 20000;
+        private int _joinTimeMs = 2000;
 
         /// <summary>
         /// ctor: init component and local data
@@ -41,7 +42,7 @@ namespace Sefin.ServiceTool
         {
             _continue = true;
             _thread = new Thread(Process);
-            //_thread.IsBackground = true;
+            _thread.IsBackground = true;
             _thread.Start();
         }
 
@@ -65,10 +66,23 @@ namespace Sefin.ServiceTool
         protected void Process()
         {
             Log("  - Starting process -");
+
+            var orchestrator = new ImportOrchestrator();
+            orchestrator.SetLogger(ServiceLogger.Instance);
+
             while (true)
             {
-                Log("  Performing...");
-                //....
+                try
+                {
+                    Log("  Performing...");
+
+                    orchestrator.Process();
+
+                } catch(Exception ex)
+                {
+                    Log("Service unexpected error: " + ex);
+                }
+
                 Thread.Sleep(2000);
                 if (!_continue) break;
             }

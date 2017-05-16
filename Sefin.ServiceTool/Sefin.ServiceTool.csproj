@@ -166,6 +166,16 @@
   <ItemGroup>
     <Content Include="app.api.logo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sefin.AnacenImporter\Sefin.AnacenImporter.csproj">
+      <Project>{3af580ca-1fe7-4888-9797-fea0bf1a2d47}</Project>
+      <Name>Sefin.AnacenImporter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sefin.Importer.Common\Sefin.Importer.Common.csproj">
+      <Project>{d96dea64-acdb-41ae-8116-bb0622883d9e}</Project>
+      <Name>Sefin.Importer.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
