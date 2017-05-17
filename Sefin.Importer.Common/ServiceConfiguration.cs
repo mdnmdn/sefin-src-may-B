@@ -21,7 +21,7 @@ namespace Sefin.Importer.Common
         {
             get
             {
-                        //return _instance ?? (_instance = new ServiceConfiguration());
+                //return _instance ?? (_instance = new ServiceConfiguration());
                 if (_instance == null)
                 {
                     _instance = new ServiceConfiguration();

@@ -43,6 +43,7 @@
     <Compile Include="FileImporter.cs" />
     <Compile Include="ImportFileInfo.cs" />
     <Compile Include="ImportOrchestrator.cs" />
+    <Compile Include="ProcessWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

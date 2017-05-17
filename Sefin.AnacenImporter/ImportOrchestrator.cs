@@ -1,5 +1,6 @@
 ﻿using Sefin.Importer.Common;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,15 +14,18 @@ namespace Sefin.AnacenImporter
     {
         object _lock = new object();
 
+        ConcurrentDictionary<string, ProcessWrapper> _processRegistry 
+            = new ConcurrentDictionary<string, ProcessWrapper>();
+
+
         private const int MaxRunnigThreads = 5;
 
-        private int _numRunningThread = 0;
 
         public void Process()
         {
             try
             {
-                if (_numRunningThread >= MaxRunnigThreads) return;
+                if (_processRegistry.Count >= MaxRunnigThreads) return;
 
                 var files = ListFileToProcess();
                 if (files.Length > 0)
@@ -30,9 +34,11 @@ namespace Sefin.AnacenImporter
 
                     foreach(var file in files)
                     {
-                        if (_numRunningThread >= MaxRunnigThreads) return;
+                        if (_processRegistry.Count >= MaxRunnigThreads) return;
 
                         var importFileInfo = PreprocessFile(file);
+
+                        if (_processRegistry.ContainsKey(importFileInfo.Abi)) continue;
 
                         ProcessFile(importFileInfo);
                     }
@@ -47,38 +53,36 @@ namespace Sefin.AnacenImporter
         {
             importFileInfo.MoveToFolder(ServiceConfiguration.Instance.StagingFilePath);
 
-            var importer = new FileImporter(importFileInfo);
-            importer.SetLogger(_logger);
+            var processWrapper = new ProcessWrapper(importFileInfo);
+            processWrapper.SetLogger(_logger);
 
-            var thread = new Thread(() =>
+            processWrapper.OnTerminate += (sender, terminatingImportFile) =>
             {
-                importer.Process();
+                    ProcessWrapper tmp = null;
+                    _processRegistry.TryRemove(terminatingImportFile.Abi, out tmp);
+            };
 
-                //Interlocked.Decrement(ref _numRunningThread);
-
-                lock (_lock)
-                {
-                    _numRunningThread--;
-                }
-                PrintRunningThreads();
-
-            });
-
-            thread.Start();
             //Interlocked.Increment(ref _numRunningThread);
-            lock (_lock)
-            {
-                _numRunningThread++;
-            }
-
-            PrintRunningThreads();
-
-
+            _processRegistry[importFileInfo.Abi] = processWrapper;
+            processWrapper.Start();
         }
 
         private void PrintRunningThreads()
         {
-            Log("Running threads: " + _numRunningThread);
+            Log("Running threads: " + _processRegistry.Count);
+        }
+
+        public void RequestStop()
+        {
+            var keys = _processRegistry.Keys;
+            foreach(var key in keys)
+            {
+                ProcessWrapper wrapper = null;
+                if (_processRegistry.TryGetValue(key, out wrapper))
+                {
+                    wrapper.Importer.RequestStop();
+                }
+            }
         }
 
         private ImportFileInfo PreprocessFile(string file)
@@ -97,7 +101,7 @@ namespace Sefin.AnacenImporter
             var files = Directory.GetFiles(ServiceConfiguration.Instance.ImportFilePath, "*.txt", 
                                     SearchOption.AllDirectories);
 
-            return files;
+            return files.OrderBy(f => f).ToArray();
         }
 
 

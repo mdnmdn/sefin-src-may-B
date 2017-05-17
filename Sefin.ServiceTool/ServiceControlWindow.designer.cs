@@ -53,7 +53,7 @@ namespace Sefin.ServiceTool {
             this.BoxInfo.Controls.Add(this.LblInfo);
             this.BoxInfo.Location = new System.Drawing.Point(12, 25);
             this.BoxInfo.Name = "BoxInfo";
-            this.BoxInfo.Size = new System.Drawing.Size(268, 61);
+            this.BoxInfo.Size = new System.Drawing.Size(301, 61);
             this.BoxInfo.TabIndex = 0;
             this.BoxInfo.TabStop = false;
             this.BoxInfo.Text = "Info";
@@ -74,7 +74,7 @@ namespace Sefin.ServiceTool {
             this.BoxStatus.Controls.Add(this.LblStatus);
             this.BoxStatus.Location = new System.Drawing.Point(12, 92);
             this.BoxStatus.Name = "BoxStatus";
-            this.BoxStatus.Size = new System.Drawing.Size(268, 39);
+            this.BoxStatus.Size = new System.Drawing.Size(301, 39);
             this.BoxStatus.TabIndex = 1;
             this.BoxStatus.TabStop = false;
             this.BoxStatus.Text = "Status";
@@ -95,7 +95,7 @@ namespace Sefin.ServiceTool {
             this.BoxInstall.Controls.Add(this.LblInstall);
             this.BoxInstall.Location = new System.Drawing.Point(12, 138);
             this.BoxInstall.Name = "BoxInstall";
-            this.BoxInstall.Size = new System.Drawing.Size(268, 38);
+            this.BoxInstall.Size = new System.Drawing.Size(301, 38);
             this.BoxInstall.TabIndex = 2;
             this.BoxInstall.TabStop = false;
             this.BoxInstall.Text = "Installation";
@@ -114,7 +114,7 @@ namespace Sefin.ServiceTool {
             this.BtnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnRefresh.Enabled = false;
             this.BtnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRefresh.Location = new System.Drawing.Point(295, 32);
+            this.BtnRefresh.Location = new System.Drawing.Point(328, 32);
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(75, 23);
             this.BtnRefresh.TabIndex = 0;
@@ -127,7 +127,7 @@ namespace Sefin.ServiceTool {
             this.BtnStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnStartStop.Enabled = false;
             this.BtnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnStartStop.Location = new System.Drawing.Point(295, 61);
+            this.BtnStartStop.Location = new System.Drawing.Point(328, 61);
             this.BtnStartStop.Name = "BtnStartStop";
             this.BtnStartStop.Size = new System.Drawing.Size(75, 23);
             this.BtnStartStop.TabIndex = 3;
@@ -140,7 +140,7 @@ namespace Sefin.ServiceTool {
             this.BtnInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnInstall.Enabled = false;
             this.BtnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnInstall.Location = new System.Drawing.Point(295, 90);
+            this.BtnInstall.Location = new System.Drawing.Point(328, 90);
             this.BtnInstall.Name = "BtnInstall";
             this.BtnInstall.Size = new System.Drawing.Size(75, 23);
             this.BtnInstall.TabIndex = 4;
@@ -152,9 +152,9 @@ namespace Sefin.ServiceTool {
             // 
             this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LblStatusBar});
-            this.StatusBar.Location = new System.Drawing.Point(0, 339);
+            this.StatusBar.Location = new System.Drawing.Point(0, 511);
             this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(384, 22);
+            this.StatusBar.Size = new System.Drawing.Size(417, 22);
             this.StatusBar.SizingGrip = false;
             this.StatusBar.TabIndex = 5;
             // 
@@ -181,7 +181,7 @@ namespace Sefin.ServiceTool {
             this.groupBox1.Controls.Add(this.TxtLog);
             this.groupBox1.Location = new System.Drawing.Point(12, 182);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(360, 154);
+            this.groupBox1.Size = new System.Drawing.Size(393, 326);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log";
@@ -197,14 +197,14 @@ namespace Sefin.ServiceTool {
             this.TxtLog.Name = "TxtLog";
             this.TxtLog.ReadOnly = true;
             this.TxtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtLog.Size = new System.Drawing.Size(348, 129);
+            this.TxtLog.Size = new System.Drawing.Size(381, 301);
             this.TxtLog.TabIndex = 0;
             // 
             // BtnClearLog
             // 
             this.BtnClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnClearLog.Location = new System.Drawing.Point(295, 149);
+            this.BtnClearLog.Location = new System.Drawing.Point(328, 149);
             this.BtnClearLog.Name = "BtnClearLog";
             this.BtnClearLog.Size = new System.Drawing.Size(75, 23);
             this.BtnClearLog.TabIndex = 7;
@@ -216,7 +216,7 @@ namespace Sefin.ServiceTool {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 361);
+            this.ClientSize = new System.Drawing.Size(417, 533);
             this.Controls.Add(this.BtnClearLog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LblTitleService);

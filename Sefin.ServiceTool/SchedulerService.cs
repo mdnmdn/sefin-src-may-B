@@ -24,7 +24,7 @@ namespace Sefin.ServiceTool
         /// <summary>
         /// 
         /// </summary>
-        private int _joinTimeMs = 2000;
+        private int _joinTimeMs = 4000;
 
         /// <summary>
         /// ctor: init component and local data
@@ -84,7 +84,11 @@ namespace Sefin.ServiceTool
                 }
 
                 Thread.Sleep(2000);
-                if (!_continue) break;
+                if (!_continue)
+                {
+                    orchestrator.RequestStop();
+                    break;
+                }
             }
 
             //Thread.Sleep(20000);

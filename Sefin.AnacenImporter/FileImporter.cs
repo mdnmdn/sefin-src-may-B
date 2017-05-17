@@ -7,7 +7,8 @@ namespace Sefin.AnacenImporter
     internal class FileImporter
     {
         private ImportFileInfo importFileInfo;
-        
+
+        private bool _requestStop = false;
 
         public FileImporter(ImportFileInfo importFileInfo)
         {
@@ -27,6 +28,13 @@ namespace Sefin.AnacenImporter
                     var res = Math.Sqrt(i * j);
                 }
 
+                if (_requestStop)
+                {
+                    Log("Request stop " + importFileInfo);
+                    Thread.Sleep(3000 + new Random().Next(5) * 1000);
+                    Log("Stopped " + importFileInfo);
+                    return;
+                }
                 //for (long j = 0; j < 5000L; j++)
                 //{
                 //    var res = Math.Sqrt(i * j);
@@ -37,6 +45,11 @@ namespace Sefin.AnacenImporter
             importFileInfo.MoveToFolder(ServiceConfiguration.Instance.CompleteFilePath);
 
             Log("Completed " + importFileInfo);
+        }
+
+        public void RequestStop()
+        {
+            _requestStop = true;
         }
 
 
