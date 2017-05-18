@@ -31,6 +31,7 @@ namespace Sefin.AnacenImporter
                 }catch(Exception ex)
                 {
                     Log("!!!!Error nell'importazione di " + ImportFileInfo);
+                    Log(ex.ToString());
                 }
                 finally
                 {
