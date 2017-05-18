@@ -4,6 +4,7 @@ using System.Threading;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Sefin.AnacenImporter
 {
@@ -15,9 +16,10 @@ namespace Sefin.AnacenImporter
 
         private bool _readComplete;
         private Exception _readException;
-        const int MaxDataWorker = 5;
+        const int MaxDataWorker = 6;
 
-        BlockingCollection<string> _dataQueue = new BlockingCollection<string>();
+        BlockingCollection<string> _dataQueue = new BlockingCollection<string>(20);
+        List<Task> _workerTasks = new List<Task>();
 
         public FileImporter(ImportFileInfo importFileInfo)
         {
@@ -28,29 +30,49 @@ namespace Sefin.AnacenImporter
 
         internal void Process()
         {
+            var startTimestamp = DateTime.Now;
             Log("Processing " + importFileInfo);
 
             var readingtask = Task.Factory.StartNew(ReadImportFile);
+            _workerTasks.Add(readingtask);
+
+            var _lock = new object();
 
             for(int i = 1; i <= MaxDataWorker; i++)
             {
                 var workerName = "datawork-" + i;
                 var worker = Task.Factory.StartNew(name =>
                 {
-                    while (true)
+                    int count = 0;
+                    Log(name + ": Starting");
+                    while (!(_dataQueue.Count == 0 && _readComplete))
                     {
-                        var data = _dataQueue.Take();
-                        Log(name + ": take " + data.Substring(0,10) + " queue: " + _dataQueue.Count);
-                        Thread.Sleep(200);
+                        string data = null;
+                        if (_dataQueue.TryTake(out data, 500)){
+                            count++;
+                            Log(name + ": take " + data.Substring(0, 10) + " queue: " + _dataQueue.Count);
+                            //Thread.Sleep(300);
+                            var rowTs = DateTime.Now;
+                            FakeMixedRowProcessing(33,30);
+                            var rowDuration = DateTime.Now.Subtract(rowTs).TotalMilliseconds;
+                            Log(name + ": processed in " + rowDuration + "ms");
+                        }
                     }
 
+                    Log(name + ": Terminated processing " + count + " rows");
+
                 }, workerName);
+                _workerTasks.Add(worker);
             }
 
-            Task.WaitAll(readingtask);
+            Task.WaitAll(_workerTasks.ToArray());
 
-            Log("Completed " + importFileInfo);
+            var durationMs = (int)DateTime.Now.Subtract(startTimestamp).TotalMilliseconds;
+            Log("Completed " + importFileInfo + " in " + durationMs + "ms");
+            
         }
+
+     
 
         private void ReadImportFile()
         {
@@ -77,7 +99,29 @@ namespace Sefin.AnacenImporter
             finally
             {
                 _readComplete = true;
+                Log("Reader: Terminated");
             }
+        }
+
+        void FakeMixedRowProcessing(int processorTimeMs = 4000, int waitTime = 2000)
+        {
+            var start = DateTime.Now;
+            var endProcessor = DateTime.Now.AddMilliseconds(processorTimeMs);
+            while(true)
+            {
+                for (long j = 0; j < 100000L; j++)
+                {
+                    var res = Math.Sqrt(j * j);
+                }
+                if (DateTime.Now > endProcessor) break;
+            }
+
+            Thread.Sleep(waitTime);
+            //for (long i = 0; i < 1000L; i++)
+            //{
+            //    Thread.Sleep(1);
+            //}
+
         }
 
         internal void ProcessFake()
@@ -118,6 +162,9 @@ namespace Sefin.AnacenImporter
 
             Log("Completed " + importFileInfo);
         }
+
+
+        
 
         public void RequestStop()
         {
