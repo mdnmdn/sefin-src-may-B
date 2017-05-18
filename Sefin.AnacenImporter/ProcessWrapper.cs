@@ -24,11 +24,19 @@ namespace Sefin.AnacenImporter
 
             ImportThread = new Thread(() =>
             {
-                Importer.Process();
+                try
+                {
+                    Importer.Process();
 
-                if (OnTerminate != null)
-                    OnTerminate(this, ImportFileInfo);
-
+                }catch(Exception ex)
+                {
+                    Log("!!!!Error nell'importazione di " + ImportFileInfo);
+                }
+                finally
+                {
+                    if (OnTerminate != null)
+                        OnTerminate(this, ImportFileInfo);
+                }
             });
 
             ImportThread.Start();

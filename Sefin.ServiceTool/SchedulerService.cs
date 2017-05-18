@@ -74,7 +74,7 @@ namespace Sefin.ServiceTool
             {
                 try
                 {
-                    Log("  Performing...");
+                    //Log("  Performing...");
 
                     orchestrator.Process();
 
