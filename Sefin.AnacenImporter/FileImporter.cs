@@ -51,6 +51,7 @@ namespace Sefin.AnacenImporter
 
             var readingtask = Task.Factory.StartNew(ReadImportFile);
             _workerTasks.Add(readingtask);
+            
 
             for(int i = 1; i <= MaxDataWorker; i++)
             {
