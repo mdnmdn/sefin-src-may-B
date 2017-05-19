@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace Sefin.AnacenImporter
 
         public void Process()
         {
+
+            DBHelper.Instance.Init(ConfigurationManager.ConnectionStrings["MainConnection"]);
+
             try
             {
                 if (_processRegistry.Count >= MaxRunnigThreads) return;
