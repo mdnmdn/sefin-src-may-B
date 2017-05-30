@@ -38,12 +38,14 @@ namespace Sefin.Importer.Common
             ImportFilePath   = NormalizeConfigPath("Sefin.Importer.ImportFilePath"); ;
             StagingFilePath  = NormalizeConfigPath("Sefin.Importer.StagingFilePath"); ;
             CompleteFilePath = NormalizeConfigPath("Sefin.Importer.CompleteFilePath"); ;
+            JobManagerConfigFile = NormalizeConfigPath("Sefin.JobManager.ConfigFile"); ;
         }
 
 
         public string ImportFilePath { get; private set; }
         public string StagingFilePath { get; private set; }
         public string CompleteFilePath { get; private set; }
+        public string JobManagerConfigFile { get; private set; }
 
         private static string NormalizeConfigPath(string configKey)
         {

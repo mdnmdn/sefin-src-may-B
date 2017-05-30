@@ -5,6 +5,7 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Collections.Generic;
 using Sefin.AnacenImporter;
+using Sefin.Importer.Common;
 
 namespace Sefin.ServiceTool
 {
@@ -65,6 +66,40 @@ namespace Sefin.ServiceTool
 
         protected void Process()
         {
+            //ProcessOrchestrator();
+            ProcessJobs();
+        }
+
+
+        private void ProcessJobs()
+        {
+            Log("  - Starting process -");
+
+            var jobManager = new JobManager();
+            jobManager.SetLogger(ServiceLogger.Instance);
+            jobManager.LoadXmlConfig(ServiceConfiguration.Instance.JobManagerConfigFile);
+
+            while (true)
+            {
+                try
+                {
+                    jobManager.RunJobs();
+                }
+                catch (Exception ex)
+                {
+                    Log("Service unexpected error: " + ex);
+                }
+
+                Thread.Sleep(2000);
+                return;
+            }
+
+            //Thread.Sleep(20000);
+            Log("  - Process completed -");
+        }
+
+        private void ProcessOrchestrator()
+        {
             Log("  - Starting process -");
 
             var orchestrator = new ImportOrchestrator();
@@ -78,7 +113,8 @@ namespace Sefin.ServiceTool
 
                     orchestrator.Process();
 
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Log("Service unexpected error: " + ex);
                 }
@@ -94,7 +130,6 @@ namespace Sefin.ServiceTool
             //Thread.Sleep(20000);
             Log("  - Process completed -");
         }
-
 
         public bool IsRunning { get { return _thread != null && _thread.ThreadState == ThreadState.Running; } }
 

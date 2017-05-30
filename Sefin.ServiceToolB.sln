@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sefin.Importer.Common", "Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleConsole", "SampleConsole\SampleConsole.csproj", "{D6DBA827-EDE9-4EDB-94CA-03FA24AA2814}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sefin.Jobs.FaiCose", "Sefin.Jobs.FaiCose\Sefin.Jobs.FaiCose.csproj", "{B2EE6481-6CCD-4C9E-BD99-332BD3F30351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sefin.Jobs.FaiAltro", "Sefin.Jobs.FaiAltro\Sefin.Jobs.FaiAltro.csproj", "{21932B7D-0EA4-44DE-8342-81A860040809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{D6DBA827-EDE9-4EDB-94CA-03FA24AA2814}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6DBA827-EDE9-4EDB-94CA-03FA24AA2814}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6DBA827-EDE9-4EDB-94CA-03FA24AA2814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2EE6481-6CCD-4C9E-BD99-332BD3F30351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2EE6481-6CCD-4C9E-BD99-332BD3F30351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2EE6481-6CCD-4C9E-BD99-332BD3F30351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2EE6481-6CCD-4C9E-BD99-332BD3F30351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21932B7D-0EA4-44DE-8342-81A860040809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21932B7D-0EA4-44DE-8342-81A860040809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21932B7D-0EA4-44DE-8342-81A860040809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21932B7D-0EA4-44DE-8342-81A860040809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

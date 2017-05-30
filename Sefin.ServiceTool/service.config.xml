@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+
+  <jobs>
+    <job name="faicose" class="Sefin.Jobs.FaiCose.FaiCoseJob" 
+                          assembly="Sefin.Jobs.FaiCose"></job>
+    <!--<job name="faicose-bis" class="Sefin.Jobs.FaiCose.FaiCoseBisJob" 
+                          assembly="Sefin.Jobs.FaiCose"></job>
+    <job name="faialtro" class="Sefin.Jobs.FaiAltro.FaiAltroJob"
+                          assembly="Sefin.Jobs.FaiCose"></job>
+                          
+                          -->
+  </jobs>
+</configuration>

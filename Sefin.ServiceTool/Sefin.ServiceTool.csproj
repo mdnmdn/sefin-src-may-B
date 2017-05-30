@@ -24,6 +24,8 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -34,12 +36,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +67,18 @@
   <PropertyGroup>
     <ApplicationIcon>app.api.logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>EF97724496E267304AD2FC6AC23EB14797F0613A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Sefin.ServiceTool_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -91,6 +104,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JobManager.cs" />
     <Compile Include="Properties\ServiceInfo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -142,6 +156,7 @@
       <DependentUpon>ServiceInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="ServiceTools.cs" />
+    <None Include="Sefin.ServiceTool_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -165,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.api.logo.ico" />
+    <Content Include="service.config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sefin.AnacenImporter\Sefin.AnacenImporter.csproj">
@@ -174,6 +192,10 @@
     <ProjectReference Include="..\Sefin.Importer.Common\Sefin.Importer.Common.csproj">
       <Project>{d96dea64-acdb-41ae-8116-bb0622883d9e}</Project>
       <Name>Sefin.Importer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sefin.Jobs.FaiCose\Sefin.Jobs.FaiCose.csproj">
+      <Project>{b2ee6481-6ccd-4c9e-bd99-332bd3f30351}</Project>
+      <Name>Sefin.Jobs.FaiCose</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
