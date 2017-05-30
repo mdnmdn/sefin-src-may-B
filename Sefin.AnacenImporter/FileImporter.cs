@@ -20,14 +20,14 @@ namespace Sefin.AnacenImporter
 
         private Exception _readException;
         const int MaxDataWorker = 6;
-        const int MaxDbWorker = 1;
+        const int MaxDbWorker = 10;
 
         int _currentWorkerThreads = 0;
 
         int _rowsRead = 0;
         int _blocksRead = 0;
 
-        int _blockSize = 100;
+        int _blockSize = 40;
 
 
 
@@ -55,6 +55,12 @@ namespace Sefin.AnacenImporter
 
         internal void ProcessWithBlocks()
         {
+            var conn = DBHelper.Instance.GetStaticConnection();
+            while(conn.State != System.Data.ConnectionState.Open)
+            {
+                Thread.Sleep(200);
+            }
+
             var startTimestamp = DateTime.Now;
             Log("Processing with blocks " + importFileInfo);
 
@@ -143,13 +149,14 @@ namespace Sefin.AnacenImporter
 
         private void WriteRecords(List<string> data)
         {
-            using (var conn = DBHelper.Instance.GetConnection())
+            var conn = DBHelper.Instance.GetStaticConnection();
+            //using (var conn = DBHelper.Instance.GetConnection())
             {
-                conn.Open();
+                //conn.Open();
                 DbTransaction blockTransaction = null; 
                 DbTransaction entityTransaction = null;
 
-                blockTransaction = conn.BeginTransaction();
+                //blockTransaction = conn.BeginTransaction();
 
                 var cmdAnagrafiche = conn.CreateCommand();
                 if (blockTransaction != null) cmdAnagrafiche.Transaction = blockTransaction;

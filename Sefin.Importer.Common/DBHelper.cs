@@ -13,6 +13,9 @@ namespace Sefin.Importer.Common
         private ConnectionStringSettings _connectionString;
         private DbProviderFactory _factory;
 
+        private DbConnection _commonConnection;
+        static object _connectionLock = new object();
+
         public void Init(ConnectionStringSettings connectionString)
         {
             _connectionString = connectionString;
@@ -26,6 +29,21 @@ namespace Sefin.Importer.Common
             return connection;
         }
 
+        public DbConnection GetStaticConnection()
+        {
+            if (_commonConnection == null)
+            {
+                lock (_connectionLock)
+                {
+                    if (_commonConnection == null)
+                    {
+                        _commonConnection = GetConnection();
+                        _commonConnection.Open();
+                    }
+                }
+            }
+            return _commonConnection;
+        }
 
         public void AddParameter(DbCommand cmd, string param, object value)
         {
@@ -37,7 +55,7 @@ namespace Sefin.Importer.Common
 
         #region Singleton
 
-        static object _lock = new object();
+        static object _singletonLock = new object();
 
         static DBHelper _instance;
 
@@ -47,7 +65,13 @@ namespace Sefin.Importer.Common
             {
                 if (_instance == null)
                 {
-                    _instance = new DBHelper();
+                    lock (_singletonLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new DBHelper();
+                        }
+                    }
                 }
 
                 return _instance;
@@ -55,6 +79,8 @@ namespace Sefin.Importer.Common
         }
 
         
+
+
 
         #endregion
     }
