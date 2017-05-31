@@ -51,7 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCompanyJob.cs" />
+    <Compile Include="FaiCoseBisJob.cs" />
     <Compile Include="FaiCoseJob.cs" />
+    <Compile Include="ImportaDatiJob.cs" />
+    <Compile Include="ProcessaAnagrificheJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

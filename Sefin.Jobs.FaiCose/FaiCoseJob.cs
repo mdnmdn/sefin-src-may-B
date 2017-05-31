@@ -7,16 +7,35 @@ using System.Threading.Tasks;
 
 namespace Sefin.Jobs.FaiCose
 {
-    public class FaiCoseJob : IJob
+    
+    public class FaiCoseJob : IJob, ILogEnabled
     {
+        public FaiCoseJob()
+        {
+            Abi = "<No abi>";
+            ConstructorType = "0";
+        }
+
+        public FaiCoseJob(string filename, string abi)
+        {
+            Abi = abi;
+            ConstructorType = "2";
+        }
+
+        public FaiCoseJob(string abi, string filename, bool backupFile, int timeout)
+        {
+            Abi = abi;
+            ConstructorType = "4";
+        }
+
         public void RunJob()
         {
-            Log("Sono partito!!!");
+            Log($"Runinng abi: {Abi} ({ConstructorType})");
         }
 
         public override string ToString()
         {
-            return "FaiCoseJob!!!";
+            return $"FaiCoseJob ABI: {Abi}";
         }
 
 
@@ -24,6 +43,9 @@ namespace Sefin.Jobs.FaiCose
         #region logging
 
         ILogger _logger;
+
+        public string Abi { get; private set; }
+        public string ConstructorType { get; private set; }
 
         void Log(string message)
         {

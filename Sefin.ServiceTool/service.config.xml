@@ -2,13 +2,52 @@
 <configuration>
 
   <jobs>
+    <!--
     <job name="faicose" class="Sefin.Jobs.FaiCose.FaiCoseJob" 
                           assembly="Sefin.Jobs.FaiCose"></job>
-    <!--<job name="faicose-bis" class="Sefin.Jobs.FaiCose.FaiCoseBisJob" 
-                          assembly="Sefin.Jobs.FaiCose"></job>
-    <job name="faialtro" class="Sefin.Jobs.FaiAltro.FaiAltroJob"
+    
+    <job name="faicose-2-param" class="Sefin.Jobs.FaiCose.FaiCoseJob" 
+                          assembly="Sefin.Jobs.FaiCose">
+      <parameter name="abi" value="AAA" type="string" />
+      <parameter name="filename" value="..\data\AAA\import.txt" type="string" />
+    </job>
+
+    <job name="faicose-4-param" class="Sefin.Jobs.FaiCose.FaiCoseJob"
+                          assembly="Sefin.Jobs.FaiCose">
+      <parameter name="ABI" value="BBB" type="string" />
+      <parameter name="filename" value="..\data\BBB\import.txt"  type="string"/>
+      <parameter name="timeout" value="5000"  type="int"/>
+      <parameter name="backupFile" value="true"  type="bool"/>
+    </job>
+    -->
+    
+    <job name="importadati" class="Sefin.Jobs.FaiCose.ProcessaAnagrificheJob"
+                          assembly="Sefin.Jobs.FaiCose">
+        <parameter name="ABI" value="AAA" type="string" />
+    
+    </job>
+    
+    <job name="importadati" class="Sefin.Jobs.FaiCose.ProcessaAnagrificheJob"
+                          assembly="Sefin.Jobs.FaiCose">
+        <parameter name="ABI" value="BBB" type="string" />
+    
+    </job>
+    
+    <job name="importadati" class="Sefin.Jobs.FaiCose.ProcessaAnagrificheJob"
+                          assembly="Sefin.Jobs.FaiCose">
+        <parameter name="ABI" value="CCC" type="string" />
+    
+    </job>
+    
+    <!--<job name="faialtro" class="Sefin.Jobs.FaiAltro.FaiAltroJob"
                           assembly="Sefin.Jobs.FaiCose"></job>
                           
+                          -->
+
+    <!--
+    <job name="faicose" class="Sefin.Jobs.FaiCose.UnknownJob"
+                          assembly="Sefin.Jobs.FaiCose"
+                          method="ProcessData" />
                           -->
   </jobs>
 </configuration>
