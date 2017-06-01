@@ -17,11 +17,57 @@ namespace SampleConsole
 
             //CancellationToken();
 
-            ConcurentFileAppend();
+            //ConcurentFileAppend();
+
+            MoveData();
 
             Log("Stop");
             Console.ReadKey();
 
+        }
+
+        private static void MoveData()
+        {
+            var p = new Person
+            {
+                Id = 1,
+                Name = "Pippo",
+                LastName = "Pluto",
+                Age = 22
+            };
+
+            StampaOggetto(p);
+
+
+
+            var anagr = new AnagrDto();
+            anagr.Id = p.Id;
+            anagr.Name = p.Name;
+            anagr.LastName = p.LastName;
+            anagr.Age = p.Age;
+
+            ClonaDati(p, anagr);
+
+
+            var dto = new PersonDto();
+            dto.Name = p.Name;
+            dto.LastName = p.LastName;
+            dto.Age = p.Age;
+
+
+            
+            StampaOggetto(dto);
+        }
+
+        private static void ClonaDati(object source, object destination)
+        {
+            // copia i valore delle proprietà dell'oggetto source sul 
+            // quelle con lo stesso nome del destination
+        }
+
+        private static void StampaOggetto(object obj)
+        {
+            // stampi le proprieta e i valori delle proprietà dell'oggetto
         }
 
         private static void ConcurentFileAppend()
